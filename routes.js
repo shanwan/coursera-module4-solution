@@ -1,0 +1,1 @@
+// The `home` state will not need a controller. Just a template.
