@@ -1,7 +1,7 @@
 (function () {
     'use strict';
 
-    angular.module('MenuApp')
+    angular.module('data')
         .service('MenuDataService', MenuDataService)
         .constant('ApiBasePath', "https://davids-restaurant.herokuapp.com");
 
@@ -15,18 +15,18 @@
                 method: "GET",
                 url: (ApiBasePath + "/categories.json")
             });
-            console.log('is this in get all categories?')
             return response;
         }
 
         service.getItemsForCategory = function (categoryShortName) {
             var response = $http({
                 method: "GET",
-                url: (ApiBasePath + "menu_items.json"),
+                url: (ApiBasePath + "/menu_items.json"),
                 params: {
                     category: categoryShortName
                 }
             });
+            console.log('response for getItemsForCategory', response)
             return response;
         }
     }

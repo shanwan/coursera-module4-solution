@@ -22,12 +22,32 @@
             // Categories page
             .state('categories', {
                 url: '/categories',
+                // abstract: true,
                 templateUrl: 'categories.template.html',
                 controller: 'CategoriesController as categoriesCtrl',
                 resolve: {
                     items: ['MenuDataService', function (MenuDataService) {
                         return MenuDataService.getAllCategories().then(function (response) {
                             return response.data;
+                        });
+                    }]
+                }
+            })
+
+            // Items page
+            .state('items', {
+                url: '/{categoryShortName}',
+                parent: 'categories',
+                templateUrl: 'items.template.html',
+                controller: 'ItemsInCategoryController as itemsInCategoryCtrl',
+                onEnter: function () {
+                    console.log("enter categories.items");
+                },
+                resolve: {
+                    itemsInCategory: ['MenuDataService', '$stateParams', function (MenuDataService, $stateParams) {
+                        return MenuDataService.getItemsForCategory($stateParams.categoryShortName).then(function (response) {
+                            console.log('routes', response.data.menu_items)
+                            return response.data.menu_items;
                         });
                     }]
                 }
