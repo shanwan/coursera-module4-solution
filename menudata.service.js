@@ -1,7 +1,7 @@
 (function () {
     'use strict';
 
-    angular.module('Menuapp')
+    angular.module('MenuApp')
         .service('MenuDataService', MenuDataService)
         .constant('ApiBasePath', "https://davids-restaurant.herokuapp.com");
 
@@ -15,6 +15,7 @@
                 method: "GET",
                 url: (ApiBasePath + "/categories.json")
             });
+            console.log('is this in get all categories?')
             return response;
         }
 

@@ -1,0 +1,8 @@
+<h3>Menu Categories</h3>
+<p>Pick one category to find more dishes.</p>
+<ul>
+  <li ng-repeat="category in categoriesCtrl.items"
+      ui-sref="category({categoryShortName: categoryShortName})">
+    {{category.name}}</a>
+  </li>
+</ul>
